@@ -1,0 +1,200 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body{
+	width: 100%;
+	height: 100%;
+	background:black;
+}
+%center{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+$width:400px;
+
+
+/*表盘*/
+.biaopan{
+    @extend %center;
+	width: $width;
+	height: $width;
+	border-radius: 50%;
+	.circle{
+	  box-sizing: border-box;
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  border: 18px solid transparent;
+	  mix-blend-mode: screen;
+	  border-radius: 115% 140% 145% 110%/125% 140% 110% 125%;
+			&:nth-child(1) {
+			border-color: #DB4437;
+			transform-origin: 50% 50%;
+			animation: zhuan1 15s linear infinite;
+			}
+			&:nth-child(2) {
+			border-color: #F4B400;
+			transform-origin: 50% 50%;
+			animation: zhuan2 15s linear infinite;					
+			}
+			&:nth-child(3) {
+			border-color: #4285F4;
+			transform-origin: 50% 50%;
+			animation: zhuan3 15s linear infinite;
+			}
+			&:nth-child(4) {
+			border-color: #0F9D58;
+			transform-origin: 50% 50%;
+			animation: zhuan4 15s linear infinite;
+			}
+}
+}
+
+@keyframes zhuan1 {
+  0% {
+            transform: rotate(0);
+  }
+  100% {
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes zhuan2 {
+  0% {
+            transform: rotate(72deg);
+  }
+  100% {
+            transform: rotate(-288deg);
+  }
+}
+
+@keyframes zhuan3 {
+  0% {
+            transform: rotate(-144deg);
+  }
+  100% {
+            transform: rotate(216deg);
+  }
+}
+@keyframes zhuan4 {
+  0% {
+            transform: rotate(216deg);
+  }
+  100% {
+            transform: rotate(-144deg);
+  }
+}
+
+.biaopan{
+	ul{
+		@extend %center;
+		width: $width * 0.9;
+		height: $width * 0.9;
+		border-radius: 50%;
+		overflow: hidden;
+
+		li{
+			@extend %center;
+			width: $width/50;
+			height: $width/50;
+            border-radius: 50%;
+            background:#F92659;
+            opacity: 0;
+            animation:kedu 0.8 linear forwards; 
+	            &:nth-child(5n){
+				width: $width/50;
+				height: $width/20;
+	            border-radius: $width/50;
+			}
+		}
+		
+	}
+}
+@for $i from 1 through 60{
+	ul li:nth-child(#{$i}){
+		 transform:rotateZ($i*6deg) translateY($width/2-$width/15);		 
+		 animation-delay:$i * 0.02s;
+	};
+}
+@keyframes kedu{
+	0%{opacity: 0}
+	100%{opacity: 1}
+}
+.biaopan .second{
+	@extend %center;
+		width: $width * 0.9;
+		height: $width * 0.9;
+		transform-origin:center center; 
+		animation:miaozhen  60s normal infinite steps(60, end) 2s;
+		.zhizhen{
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+			@extend %center;
+			height: $width*0.50;
+			width:8px;
+			background:#E04639;
+			top:-$width*0.30;			
+			/*animation: doudong 1s ease infinite 2s;*/
+		}
+		.center{
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background:#E04639;
+			@extend %center;
+		}
+}
+@keyframes miaozhen{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+}
+@keyframes doudong{ 0%{transform: rotate(0deg) translateX(1px)} 21%{transform:rotate(4deg) translateX(1px)} 26%{transform: rotate(8deg) translateX(1px)} 33%{transform: rotate(4deg) translateX(1px)} 37%{transform: rotate(6deg) translateX(1px)} 100%{transform: rotate(6deg) translateX(1px)}
+}
+.biaopan .hour{
+	@extend %center;
+		width: $width * 0.9;
+		height: $width * 0.9;
+		transform-origin:center center;
+		transform: rotateZ(90deg);   
+		animation:shizhen  21600s normal infinite steps(21600, end) 2s;
+		.zhizhen{
+			border-top-left-radius: 16px;
+			border-top-right-radius: 16px;
+			@extend %center;
+			height: $width*0.4;
+			width:16px;
+			background:#4DD0F8;
+			top:-100px;
+		}
+}
+@keyframes shizhen{
+	0%{transform:rotate(90deg)}
+	100%{transform:rotate(450deg)}
+}
+.biaopan .minute{
+	@extend %center;
+		width: $width * 0.9;
+		height: $width * 0.9;
+		transform-origin:center center; 		
+		animation:fenzhen  3600s normal infinite steps(3600, end) 2s;
+		.zhizhen{
+			border-top-left-radius: 12px;
+		    border-top-right-radius: 12px;
+			@extend %center;
+			height: $width*0.45;
+			width:12px;
+			background:#0F9D58;
+			top:-100px;
+		}
+}
+@keyframes fenzhen{
+	0%{transform:rotate(0deg)}
+	100%{transform:rotate(360deg)}
+}
+
